@@ -8,6 +8,7 @@ typedef struct {
     char groupAge[500];
     char sexGender[500];
     char val[500];
+    double doubleVal;
 } Data;
 
 int main(void) {
@@ -60,21 +61,37 @@ int main(void) {
         // Extracts Value
         token = strtok(NULL, ",");
         if (token == NULL) continue;
-        strncpy(dataArray[i].val, token, sizeof(dataArray[i].val) - 1);
+        char* quoteToken = strtok(token, "\"");
+
+        if (quoteToken != NULL) {
+            strncpy(dataArray[i].val, quoteToken, sizeof(dataArray[i].val) - 1);
+        } 
+        else {
+            strncpy(dataArray[i].val, token, sizeof(dataArray[i].val) - 1);
+        }
+
+        dataArray[i].doubleVal = atof(dataArray[i].val);
 
         i++;
     }
 
+    double numVal = 0;
+    int count = 0;
+
     for (int j = 0; j < i; j++) {
-    if (strcmp(dataArray[j].sexGender, "\"Males\"") == 0) {
+    if (strcmp(dataArray[j].geo, "\"Ontario\"") == 0 && strcmp(dataArray[j].refDate, "\"2018\"") == 0) {
+    numVal = numVal + dataArray[j].doubleVal;
     printf("REF date: %s\n", dataArray[j].refDate);
     printf("Geo: %s\n", dataArray[j].geo);
     printf("Group Age: %s\n", dataArray[j].groupAge);
     printf("Sex/Gender: %s\n", dataArray[j].sexGender);
-    printf("Value: %s\n", dataArray[j].val);
+    printf("Value: %0.2lf\n", dataArray[j].doubleVal);
+    count = count + 1;
     printf("\n");
     }
     }
+    double avgMale = numVal/count;
+    printf("%0.2lf\n", avgMale);
 
     fclose(fp);
     return 0;
