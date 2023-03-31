@@ -65,16 +65,18 @@ int main(void) {
         i++;
     }
 
-    // Print out the data in the array of structs
     for (int j = 0; j < i; j++) {
-        printf("REF date: %s\n", dataArray[j].refDate);
-        printf("Geo: %s\n", dataArray[j].geo);
-        printf("Group Age: %s\n", dataArray[j].groupAge);
-        printf("Sex/Gender: %s\n", dataArray[j].sexGender);
-        printf("Value: %s\n", dataArray[j].val);
-        printf("\n");
+    if (strcmp(dataArray[j].sexGender, "\"Males\"") == 0) {
+    printf("REF date: %s\n", dataArray[j].refDate);
+    printf("Geo: %s\n", dataArray[j].geo);
+    printf("Group Age: %s\n", dataArray[j].groupAge);
+    printf("Sex/Gender: %s\n", dataArray[j].sexGender);
+    printf("Value: %s\n", dataArray[j].val);
+    printf("\n");
+    }
     }
 
     fclose(fp);
     return 0;
+
 }
