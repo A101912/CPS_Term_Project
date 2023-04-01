@@ -1,6 +1,11 @@
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+/*----------------------------------------*/
+/*   THE CODE TO SOLVE FOR QUESTION 1.    */
+/*----------------------------------------*/
 
 typedef struct {
     char refDate[500];
@@ -11,21 +16,28 @@ typedef struct {
     double doubleVal;
 } Data;
 
+double CalculateProvinceAvg(Data data[], char *filter);
+double CalculateProvinceAndYearAvg(Data data[], char *filter, char *filter2);
+double CalculateProvinceWithAgeAvg(Data data[], char *filter, char *filter2);
+
 int main(void) {
+
+
     FILE *fp;
     char line[1000];
     char *token;
     int i = 0;
     Data dataArray[1000];
 
+
     fp = fopen("statscan_diabetes.csv", "r");
 
     if (fp == NULL) {
         printf("The file is unknown, please fix the file");
-        return 1; // Exit program with error code
+        return 1; 
     }
 
-    fseek(fp, 0, SEEK_SET); // Points to the beginning of the file
+    fseek(fp, 0, SEEK_SET); 
 
     while (fgets(line, sizeof(line), fp)) {
 
@@ -63,6 +75,7 @@ int main(void) {
         if (token == NULL) continue;
         char* quoteToken = strtok(token, "\"");
 
+        // Removes excess quotations
         if (quoteToken != NULL) {
             strncpy(dataArray[i].val, quoteToken, sizeof(dataArray[i].val) - 1);
         } 
@@ -70,30 +83,193 @@ int main(void) {
             strncpy(dataArray[i].val, token, sizeof(dataArray[i].val) - 1);
         }
 
+        // Convert the string array to double array
         dataArray[i].doubleVal = atof(dataArray[i].val);
 
+        // Count increases to i
         i++;
     }
+    fclose(fp);
 
+    /*------------------------------------------------*/
+    /*   THE CODE TO SOLVE FOR QUESTION 1a) and 1b)   */
+    /*------------------------------------------------*/
+    char ontario[] = "\"Ontario\"";
+    char quebec[] = "\"Quebec\"";
+    char columbia[] = "\"British Columbia\"";
+    char alberta[] = "\"Alberta\"";
+    char canada[] = "\"Canada (excluding territories)\"";
+
+    // double avgOntario = CalculateProvinceAvg(dataArray, ontario);
+    // double avgQuebec = CalculateProvinceAvg(dataArray, quebec);
+    // double avgColumbia = CalculateProvinceAvg(dataArray, columbia);
+    // double avgAlberta = CalculateProvinceAvg(dataArray, alberta);
+    double avgCanada = CalculateProvinceAvg(dataArray, canada);
+
+    printf("\n");
+    printf("QUESTION 1a) & 1b)\n");
+    printf("\n");
+    printf("/-----------------------------------------------------------------/\n"); 
+    // printf("Average value for Ontario for all years/ageGroup: %0.2f percent! \n", avgOntario);
+    // printf("\n");
+    // printf("Average value for Quebec for all years/ageGroup: %0.2lf percent! \n", avgQuebec);
+    // printf("\n");
+    // printf("Average value for British Columbia for all years/ageGroup: %0.2lf percent! \n", avgColumbia);
+    // printf("\n");
+    // printf("Average value for Alberta for all years/ageGroup: %0.2lf percent! \n", avgAlberta);
+    printf("\n");
+    printf("Average value for Canada excluding territories for all years/ageGroup: %0.2lf percent! \n", avgCanada);
+    printf("/-----------------------------------------------------------------/\n"); 
+
+    /*------------------------------------------------*/
+    /*      THE CODE TO SOLVE FOR QUESTION 1c)        */
+    /*------------------------------------------------*/
+    char years[][8]= { "\"2015\"", "\"2016\"", "\"2017\"", "\"2018\"", "\"2019\"", "\"2020\"", "\"2021\"" };
+
+    double avgOntario2015 = CalculateProvinceAndYearAvg(dataArray, ontario, years[0]);
+    double avgQuebec2015 = CalculateProvinceAndYearAvg(dataArray, quebec, years[0]);
+    double avgColumbia2015 = CalculateProvinceAndYearAvg(dataArray, columbia, years[0]);
+    double avgAlberta2015 = CalculateProvinceAndYearAvg(dataArray, alberta, years[0]);
+    double avgCanada2015 = CalculateProvinceAndYearAvg(dataArray, canada, years[0]);
+
+    double avgOntario2016 = CalculateProvinceAndYearAvg(dataArray, ontario, years[1]);
+    double avgQuebec2016 = CalculateProvinceAndYearAvg(dataArray, quebec, years[1]);
+    double avgColumbia2016 = CalculateProvinceAndYearAvg(dataArray, columbia, years[1]);
+    double avgAlberta2016 = CalculateProvinceAndYearAvg(dataArray, alberta, years[1]);
+    double avgCanada2016 = CalculateProvinceAndYearAvg(dataArray, canada, years[1]);
+
+    double avgOntario2017 = CalculateProvinceAndYearAvg(dataArray, ontario, years[2]);
+    double avgQuebec2017 = CalculateProvinceAndYearAvg(dataArray, quebec, years[2]);
+    double avgColumbia2017 = CalculateProvinceAndYearAvg(dataArray, columbia, years[2]);
+    double avgAlberta2017 = CalculateProvinceAndYearAvg(dataArray, alberta, years[2]);
+    double avgCanada2017 = CalculateProvinceAndYearAvg(dataArray, canada, years[2]);
+
+    double avgOntario2018 = CalculateProvinceAndYearAvg(dataArray, ontario, years[3]);
+    double avgQuebec2018 = CalculateProvinceAndYearAvg(dataArray, quebec, years[3]);
+    double avgColumbia2018 = CalculateProvinceAndYearAvg(dataArray, columbia, years[3]);
+    double avgAlberta2018 = CalculateProvinceAndYearAvg(dataArray, alberta, years[3]);
+    double avgCanada2018 = CalculateProvinceAndYearAvg(dataArray, canada, years[3]);
+
+    double avgOntario2019 = CalculateProvinceAndYearAvg(dataArray, ontario, years[4]);
+    double avgQuebec2019 = CalculateProvinceAndYearAvg(dataArray, quebec, years[4]);
+    double avgColumbia2019 = CalculateProvinceAndYearAvg(dataArray, columbia, years[4]);
+    double avgAlberta2019 = CalculateProvinceAndYearAvg(dataArray, alberta, years[4]);
+    double avgCanada2019 = CalculateProvinceAndYearAvg(dataArray, canada, years[4]);
+
+    double avgOntario2020 = CalculateProvinceAndYearAvg(dataArray, ontario, years[5]);
+    double avgQuebec2020 = CalculateProvinceAndYearAvg(dataArray, quebec, years[5]);
+    double avgColumbia2020 = CalculateProvinceAndYearAvg(dataArray, columbia, years[5]);
+    double avgAlberta2020 = CalculateProvinceAndYearAvg(dataArray, alberta, years[5]);
+    double avgCanada2020 = CalculateProvinceAndYearAvg(dataArray, canada, years[5]);
+
+    double avgOntario2021 = CalculateProvinceAndYearAvg(dataArray, ontario, years[6]);
+    double avgQuebec2021 = CalculateProvinceAndYearAvg(dataArray, quebec, years[6]);
+    double avgColumbia2021 = CalculateProvinceAndYearAvg(dataArray, columbia, years[6]);
+    double avgAlberta2021 = CalculateProvinceAndYearAvg(dataArray, alberta, years[6]);
+    double avgCanada2021 = CalculateProvinceAndYearAvg(dataArray, canada, years[6]);
+
+    printf("\n");
+    printf("QUESTION 1c)\n");
+    printf("\n");
+    printf("%-15s %-15s %-15s %-15s %-18s %-15s\n", "Year (20XX)", "Canada", "Ontario", "Quebec", "British Columbia", "Alberta");
+    printf("%-15s %-15s %-15s %-15s %-18s %-15s\n", "---------------", "--------------", "--------------", "--------------", "------------------", "--------------");
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2015", avgCanada2015, avgOntario2015, avgQuebec2015, avgColumbia2015, avgAlberta2015);
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2015", avgCanada2016, avgOntario2016, avgQuebec2016, avgColumbia2016, avgAlberta2016);
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2015", avgCanada2017, avgOntario2017, avgQuebec2017, avgColumbia2017, avgAlberta2017);
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2015", avgCanada2018, avgOntario2018, avgQuebec2018, avgColumbia2018, avgAlberta2018);
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2015", avgCanada2019, avgOntario2019, avgQuebec2019, avgColumbia2019, avgAlberta2019);
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2015", avgCanada2020, avgOntario2020, avgQuebec2020, avgColumbia2020, avgAlberta2020);
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2015", avgCanada2021, avgOntario2021, avgQuebec2021, avgColumbia2021, avgAlberta2021);
+
+    /*------------------------------------------------*/
+    /*      THE CODE TO SOLVE FOR QUESTION 1d)        */
+    /*------------------------------------------------*/
+    char age[][25] = {"\"35 to 49 years\"", "\"50 to 64 years\"", "\"65 years and over\""};
+
+    double avgOntarioAgrGrp1 = CalculateProvinceWithAgeAvg(dataArray, ontario, age[0]);
+    double avgQuebecAgrGrp1 = CalculateProvinceWithAgeAvg(dataArray, quebec, age[0]);
+    double avgColumbiaAgrGrp1 = CalculateProvinceWithAgeAvg(dataArray, columbia, age[0]);
+    double avgAlbertaAgrGrp1 = CalculateProvinceWithAgeAvg(dataArray, alberta, age[0]);
+    double avgCanadaAgrGrp1 = CalculateProvinceWithAgeAvg(dataArray, canada, age[0]);
+
+    double avgOntarioAgrGrp2 = CalculateProvinceWithAgeAvg(dataArray, ontario, age[1]);
+    double avgQuebecAgrGrp2 = CalculateProvinceWithAgeAvg(dataArray, quebec, age[1]);
+    double avgColumbiaAgrGrp2 = CalculateProvinceWithAgeAvg(dataArray, columbia, age[1]);
+    double avgAlbertaAgrGrp2 = CalculateProvinceWithAgeAvg(dataArray, alberta, age[1]);
+    double avgCanadaAgrGrp2 = CalculateProvinceWithAgeAvg(dataArray, canada, age[1]);
+
+    double avgOntarioAgrGrp3 = CalculateProvinceWithAgeAvg(dataArray, ontario, age[2]);
+    double avgQuebecAgrGrp3 = CalculateProvinceWithAgeAvg(dataArray, quebec, age[2]);
+    double avgColumbiaAgrGrp3 = CalculateProvinceWithAgeAvg(dataArray, columbia, age[2]);
+    double avgAlbertaAgrGrp3 = CalculateProvinceWithAgeAvg(dataArray, alberta, age[2]);
+    double avgCanadaAgrGrp3 = CalculateProvinceWithAgeAvg(dataArray, canada, age[2]);
+
+    printf("\n");
+    printf("QUESTION 1d)\n");
+    printf("\n");
+    printf("%-15s %-15s %-15s %-15s %-18s %-15s\n", "Age Group", "Canada", "Ontario", "Quebec", "British Columbia", "Alberta");
+    printf("%-15s %-15s %-15s %-15s %-18s %-15s\n", "---------------", "--------------", "--------------", "--------------", "------------------", "--------------");
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "35-49", avgCanadaAgrGrp1, avgOntarioAgrGrp1, avgQuebecAgrGrp1, avgColumbiaAgrGrp1, avgAlbertaAgrGrp1);
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "50-64", avgCanadaAgrGrp2, avgOntarioAgrGrp2, avgQuebecAgrGrp2, avgColumbiaAgrGrp2, avgAlbertaAgrGrp2);
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "64+", avgCanadaAgrGrp3, avgOntarioAgrGrp3, avgQuebecAgrGrp3, avgColumbiaAgrGrp3, avgAlbertaAgrGrp3);
+    
+
+    
+    return 0;
+}
+
+double CalculateProvinceAvg(Data data[], char *filter) {
     double numVal = 0;
     int count = 0;
 
-    for (int j = 0; j < i; j++) {
-    if (strcmp(dataArray[j].geo, "\"Ontario\"") == 0 && strcmp(dataArray[j].refDate, "\"2018\"") == 0) {
-    numVal = numVal + dataArray[j].doubleVal;
-    printf("REF date: %s\n", dataArray[j].refDate);
-    printf("Geo: %s\n", dataArray[j].geo);
-    printf("Group Age: %s\n", dataArray[j].groupAge);
-    printf("Sex/Gender: %s\n", dataArray[j].sexGender);
-    printf("Value: %0.2lf\n", dataArray[j].doubleVal);
-    count = count + 1;
-    printf("\n");
+    for (int j = 0; j < 211; j++) {
+        if (strcmp(data[j].geo, filter) == 0) {
+            numVal += data[j].doubleVal;
+            printf("%lf\n", numVal);
+            if(data[j].doubleVal != 0){
+                count++;
+            }
+        }
     }
-    }
-    double avgMale = numVal/count;
-    printf("%0.2lf\n", avgMale);
+    printf("%d",count);
+    double avg = numVal/count;
 
-    fclose(fp);
-    return 0;
+    return avg; 
+
+}
+
+double CalculateProvinceAndYearAvg(Data data[], char *filter, char *filter2) {
+    double numVal = 0;
+    int count = 0;
+
+    for (int j = 0; j < 211; j++) {
+        if (strcmp(data[j].geo, filter) == 0 && strcmp(data[j].refDate, filter2) == 0) {
+            numVal = numVal + data[j].doubleVal;
+            if(data[j].doubleVal != 0){
+                count++;
+            }
+        }
+    }
+    double avg = numVal/count;
+
+    return avg; 
+
+}
+
+double CalculateProvinceWithAgeAvg(Data data[], char *filter, char *filter2) {
+    double numVal = 0;
+    int count = 0;
+
+    for (int j = 0; j < 211; j++) {
+        if (strcmp(data[j].geo, filter) == 0 && strcmp(data[j].groupAge, filter2) == 0) {
+            numVal = numVal + data[j].doubleVal;
+            if(data[j].doubleVal != 0){
+                count++;
+            }
+        }
+    }
+    double avg = numVal/count;
+
+    return avg; 
 
 }
