@@ -219,6 +219,7 @@ int main(void) {
     double ProvinceAvg[] = {avgOntario, avgQuebec, avgColumbia, avgAlberta};
     double highest = 0;
     double lowest = ProvinceAvg[0];
+    char ProvinceName[5][20] = {"Ontario", "Quebec", "British Columbia" , "Alberta"};
 
     for (int i = 0; i < 4; i++){
         if(highest < ProvinceAvg[i]){
@@ -234,8 +235,19 @@ int main(void) {
     printf("-----------------------------------------------\n");
     printf("QUESTION 2\n");
     printf("\n");
-    printf("The province with the highest average is: %0.2lf\n",highest);
-    printf("The province with the lowest average is: %0.2lf\n",lowest);
+    
+    printf("The province with the highest average is:");
+    for(int i=0; i<4; i++){
+        if(ProvinceAvg[i] == highest) {
+            printf(" %s\n", ProvinceName[i]);
+        }
+    }
+    printf("The province with the lowest average is:");
+    for(int i=0; i<4; i++){
+        if(ProvinceAvg[i] == lowest) {
+            printf(" %s\n", ProvinceName[i]);
+        }
+    }
 
     /*------------------------------------------------*/
     /*      THE CODE TO SOLVE FOR QUESTION 3          */
@@ -246,18 +258,14 @@ int main(void) {
     char aboveProv[][20]={"","","",""};
     char belowProv[][20] = {" ", " ", " ", " "};
 
-    char ProvinceName[5][20] = {"Ontario", "Quebec", "British Columbia" , "Alberta"};
-
     for(int i=0; i<4; i++){
         if(ProvinceAvg[i] > avgCanada){
             aboveAvg[i] = ProvinceAvg[i];
             strcpy(aboveProv[i], ProvinceName[i]);
-            printf("%s: %lf\n", aboveProv[i], aboveAvg[i]);
         }
         if(ProvinceAvg[i] < avgCanada){
             belowAvg[i] = ProvinceAvg[i];
             strcpy(belowProv[i], ProvinceName[i]);
-            printf("%s\n",belowProv[i]);
         }
     }
     printf("\n");
