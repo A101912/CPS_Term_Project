@@ -231,6 +231,7 @@ int main(void) {
 
     }
     printf("\n");
+    printf("-----------------------------------------------\n");
     printf("QUESTION 2\n");
     printf("\n");
     printf("The province with the highest average is: %0.2lf\n",highest);
@@ -240,68 +241,46 @@ int main(void) {
     /*      THE CODE TO SOLVE FOR QUESTION 3          */
     /*------------------------------------------------*/
 
-    double aboveAvg[] = {};
-    double belowAvg[] = {};
+    double aboveAvg[4] = {0};
+    double belowAvg[4] = {0};
+    char aboveProv[][20]={"","","",""};
+    char belowProv[][20] = {" ", " ", " ", " "};
+
+    char ProvinceName[5][20] = {"Ontario", "Quebec", "British Columbia" , "Alberta"};
+
     for(int i=0; i<4; i++){
         if(ProvinceAvg[i] > avgCanada){
             aboveAvg[i] = ProvinceAvg[i];
-            printf("%lf\n", aboveAvg[i]);
+            strcpy(aboveProv[i], ProvinceName[i]);
+            printf("%s: %lf\n", aboveProv[i], aboveAvg[i]);
         }
         if(ProvinceAvg[i] < avgCanada){
             belowAvg[i] = ProvinceAvg[i];
+            strcpy(belowProv[i], ProvinceName[i]);
+            printf("%s\n",belowProv[i]);
         }
     }
-
-char aboveProv[][10]={"","","",""};
-char belowProv[][10]={"","","",""};
-
-    for(int i=0; i<4; i++){
- 
-        if(belowAvg[i] == avgOntario){
-            strcpy(belowProv[i], "Ontario");
-        }
-        else if(belowAvg[i] == avgQuebec){
-            strcpy(belowProv[i], "Quebec");
-        }
-        else if(belowAvg[i] == avgColumbia){
-            strcpy(belowProv[i], "British Columbia");
-        }
-        else if(belowAvg[i] == avgAlberta){
-            strcpy(belowProv[i], "Alberta");
-        }
-    }
-
-    for(int i=0; i<4; i++){
-        
-        if(aboveAvg[i] == avgOntario){
-            strcpy(aboveProv[i], "Ontario");
-        }
-        else if(aboveAvg[i] == avgQuebec){
-            strcpy(aboveProv[i], "Quebec");
-        }
-        else if(aboveAvg[i] == avgColumbia){
-            strcpy(aboveProv[i], "British Columbia");
-        }
-        else if(aboveAvg[i] == avgAlberta){
-            strcpy(aboveProv[i], "Alberta");
-        }
-    }
-
-
     printf("\n");
+    printf("-----------------------------------------------\n");
     printf("QUESTION 3\n");
     printf("\n");
 
     printf("The provinces that are above the national average are:\n");
     for(int i=0; i<4; i++){
-        printf("%s\n",aboveProv[i]);
+        if(aboveAvg[i] > 0) {
+            printf("%s: with %0.2lf percent!\n", aboveProv[i], aboveAvg[i]);
+        }
     }
     printf("\n");
 
     printf("The provinces that are below the national average are:\n");
     for(int i=0; i<4; i++){
-        printf("%s\n",belowProv[i]);
+    if(ProvinceAvg[i] < avgCanada){
+        belowAvg[i] = ProvinceAvg[i];
+        printf("%s: with %0.2lf percent!\n", belowProv[i], belowAvg[i]);
     }
+}
+    printf("\n");
 
     /*------------------------------------------------*/
     /*      THE CODE TO SOLVE FOR QUESTION 4          */
