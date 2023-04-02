@@ -1,0 +1,18 @@
+#Now the script will be made to graph the stuff
+#This is for part 5.
+#We need an overall title for the graph
+
+set title 'The Diabetes percentages from 2015 to 2021 for the 4 provinces and the national average'
+
+#the x-axis label
+set xlabel 'Years'
+#the y-axis label 
+set ylabel 'The diabetes percentage' 
+
+set xtics 1
+#Graphing 
+plot 'yearGraphData.txt' using 1:2 title "National Average for Canada" with lp, \
+     'yearGraphData.txt' using 1:3 title "Ontario" with lp, \
+     'yearGraphData.txt' using 1:4 title "Quebec" with lp, \
+     'yearGraphData.txt' using 1:5 title "British Columbia" with lp, \
+     'yearGraphData.txt' using 1:6 title "Alberta" with lp, \
