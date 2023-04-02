@@ -294,13 +294,118 @@ int main(void) {
     /*      THE CODE TO SOLVE FOR QUESTION 4          */
     /*------------------------------------------------*/
     char yearName[][20] = {"2015", "2016", "2017" , "2018", "2019", "2020", "2021"};
-    double province2015[] = {};
-    double province2016[] = {};
-    double province2017[] = {};
-    double province2018[] = {};
-    double province2019[] = {};
-    double province2020[] = {};
-    double province2021[] = {};
+    double allTimeHigh = 0;
+    double allTimeLow = avgOntario2015;
+    char highestProvince[][20] = {""};
+    char lowestProvince[][20] = {""};
+    int yearDetHigh = 0;
+    int yearDetLow = 0;
+
+    double province2015[] = {avgOntario2015, avgQuebec2015, avgColumbia2015, avgAlberta2015};
+    double province2016[] = {avgOntario2016, avgQuebec2016, avgColumbia2016, avgAlberta2016};
+    double province2017[] = {avgOntario2017, avgQuebec2017, avgColumbia2017, avgAlberta2017};
+    double province2018[] = {avgOntario2018, avgQuebec2018, avgColumbia2018, avgAlberta2018};
+    double province2019[] = {avgOntario2019, avgQuebec2019, avgColumbia2019, avgAlberta2019};
+    double province2020[] = {avgOntario2020, avgQuebec2020, avgColumbia2020, avgAlberta2020};
+    double province2021[] = {avgOntario2021, avgQuebec2021, avgColumbia2021, avgAlberta2021};
+
+    for(int i =0; i < 4; i++){
+        if(province2015[i] > allTimeHigh){
+            allTimeHigh = province2015[i];
+            yearDetHigh = 0;
+            strcpy(highestProvince[0], ProvinceName[i]);
+
+            }
+        if(province2015[i] < allTimeLow){
+            allTimeLow = province2015[i];
+            yearDetLow = 0;
+            strcpy(lowestProvince[0], ProvinceName[i]);
+            }
+        }
+
+    for(int i =0; i < 4; i++){
+        if(province2016[i] > allTimeHigh){
+            allTimeHigh = province2016[i];
+            yearDetHigh = 1;
+            strcpy(highestProvince[0], ProvinceName[i]);
+            
+        }
+        if(province2016[i] < allTimeLow){
+            allTimeLow = province2016[i];
+            yearDetLow = 1;
+            strcpy(lowestProvince[0], ProvinceName[i]);
+            
+        }
+    }
+    for(int i =0; i < 4; i++){
+        if(province2017[i] > allTimeHigh){
+            allTimeHigh = province2017[i];
+            yearDetHigh = 2;
+            strcpy(highestProvince[0], ProvinceName[i]);
+        }
+        if(province2017[i] < allTimeLow){
+            allTimeLow = province2017[i];
+            yearDetLow = 2;
+            strcpy(lowestProvince[0], ProvinceName[i]);
+        }
+    }
+    for(int i =0; i < 4; i++){
+        if(province2018[i] > allTimeHigh){
+            allTimeHigh = province2018[i];
+            yearDetHigh = 3;
+            strcpy(highestProvince[0], ProvinceName[i]);
+        }
+        if(province2018[i] < allTimeLow){
+            allTimeLow = province2018[i];
+            yearDetLow = 3;
+            strcpy(lowestProvince[0], ProvinceName[i]);
+        }
+    }
+    for(int i =0; i < 4; i++){
+        if(province2019[i] > allTimeHigh){
+            allTimeHigh = province2019[i];
+            yearDetHigh = 4;
+            strcpy(highestProvince[0], ProvinceName[i]);
+        }
+        if(province2019[i] < allTimeLow){
+            allTimeLow = province2019[i];
+            yearDetLow = 4;
+            strcpy(lowestProvince[0], ProvinceName[i]);
+        }
+    }
+    for(int i =0; i < 4; i++){
+        if(province2020[i] > allTimeHigh){
+            allTimeHigh = province2020[i];
+            yearDetHigh = 5;
+            strcpy(highestProvince[0], ProvinceName[i]);
+        }
+        if(province2020[i] < allTimeLow){
+            allTimeLow = province2020[i];
+            yearDetLow = 5;
+            strcpy(lowestProvince[0], ProvinceName[i]);
+        }
+    }
+    for(int i =0; i < 4; i++){
+        if(province2021[i] > allTimeHigh){
+            allTimeHigh = province2021[i];
+            yearDetHigh = 6;
+            strcpy(highestProvince[0], ProvinceName[i]);
+        }
+        if(province2021[i] < allTimeLow){
+            allTimeLow = province2021[i];
+            yearDetLow = 6;
+            strcpy(lowestProvince[0], ProvinceName[i]);
+        }
+    }
+    printf("\n");
+    printf("-----------------------------------------------\n");
+    printf("QUESTION 4\n");
+    printf("\n");
+    printf("The all time highest diabetes average is %s, in %s\n",highestProvince[0], yearName[yearDetHigh]);
+    printf("\n");
+    printf("The all time lowest diabetes average is %s, in %s\n",lowestProvince[0], yearName[yearDetLow]);
+    printf("\n");
+
 
     /*------------------------------------------------*/
     /*   CODE TO PRINT THE DATA TO FILES FOR GRAPH    */
@@ -374,7 +479,6 @@ double CalculateProvinceAndYearAvg(Data data[], char *filter, char *filter2) {
         }
     }
     double avg = numVal/count;
-
     return avg; 
 }
 
