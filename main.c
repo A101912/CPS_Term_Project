@@ -100,23 +100,23 @@ int main(void) {
     char alberta[] = "\"Alberta\"";
     char canada[] = "\"Canada (excluding territories)\"";
 
-    // double avgOntario = CalculateProvinceAvg(dataArray, ontario);
-    // double avgQuebec = CalculateProvinceAvg(dataArray, quebec);
-    // double avgColumbia = CalculateProvinceAvg(dataArray, columbia);
-    // double avgAlberta = CalculateProvinceAvg(dataArray, alberta);
+    double avgOntario = CalculateProvinceAvg(dataArray, ontario);
+    double avgQuebec = CalculateProvinceAvg(dataArray, quebec);
+    double avgColumbia = CalculateProvinceAvg(dataArray, columbia);
+    double avgAlberta = CalculateProvinceAvg(dataArray, alberta);
     double avgCanada = CalculateProvinceAvg(dataArray, canada);
 
     printf("\n");
     printf("QUESTION 1a) & 1b)\n");
     printf("\n");
     printf("/-----------------------------------------------------------------/\n"); 
-    // printf("Average value for Ontario for all years/ageGroup: %0.2f percent! \n", avgOntario);
-    // printf("\n");
-    // printf("Average value for Quebec for all years/ageGroup: %0.2lf percent! \n", avgQuebec);
-    // printf("\n");
-    // printf("Average value for British Columbia for all years/ageGroup: %0.2lf percent! \n", avgColumbia);
-    // printf("\n");
-    // printf("Average value for Alberta for all years/ageGroup: %0.2lf percent! \n", avgAlberta);
+    printf("Average value for Ontario for all years/ageGroup: %0.2f percent! \n", avgOntario);
+    printf("\n");
+    printf("Average value for Quebec for all years/ageGroup: %0.2lf percent! \n", avgQuebec);
+    printf("\n");
+    printf("Average value for British Columbia for all years/ageGroup: %0.2lf percent! \n", avgColumbia);
+    printf("\n");
+    printf("Average value for Alberta for all years/ageGroup: %0.2lf percent! \n", avgAlberta);
     printf("\n");
     printf("Average value for Canada excluding territories for all years/ageGroup: %0.2lf percent! \n", avgCanada);
     printf("/-----------------------------------------------------------------/\n"); 
@@ -213,8 +213,126 @@ int main(void) {
     printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "50-64", avgCanadaAgrGrp2, avgOntarioAgrGrp2, avgQuebecAgrGrp2, avgColumbiaAgrGrp2, avgAlbertaAgrGrp2);
     printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "64+", avgCanadaAgrGrp3, avgOntarioAgrGrp3, avgQuebecAgrGrp3, avgColumbiaAgrGrp3, avgAlbertaAgrGrp3);
     
+    /*------------------------------------------------*/
+    /*      THE CODE TO SOLVE FOR QUESTION 2          */
+    /*------------------------------------------------*/
+    double ProvinceAvg[] = {avgOntario, avgQuebec, avgColumbia, avgAlberta};
+    double highest = 0;
+    double lowest = ProvinceAvg[0];
 
-    
+    for (int i = 0; i < 4; i++){
+        if(highest < ProvinceAvg[i]){
+            highest = ProvinceAvg[i];
+        }
+
+        if(lowest > ProvinceAvg[i]){
+            lowest = ProvinceAvg[i];
+        }
+
+    }
+    printf("\n");
+    printf("QUESTION 2\n");
+    printf("\n");
+    printf("The province with the highest average is: %0.2lf\n",highest);
+    printf("The province with the lowest average is: %0.2lf\n",lowest);
+
+    /*------------------------------------------------*/
+    /*      THE CODE TO SOLVE FOR QUESTION 3          */
+    /*------------------------------------------------*/
+
+    double aboveAvg[] = {};
+    double belowAvg[] = {};
+    for(int i=0; i<4; i++){
+        if(ProvinceAvg[i] > avgCanada){
+            aboveAvg[i] = ProvinceAvg[i];
+            printf("%lf\n", aboveAvg[i]);
+        }
+        if(ProvinceAvg[i] < avgCanada){
+            belowAvg[i] = ProvinceAvg[i];
+        }
+    }
+
+char aboveProv[][10]={"","","",""};
+char belowProv[][10]={"","","",""};
+
+    for(int i=0; i<4; i++){
+ 
+        if(belowAvg[i] == avgOntario){
+            strcpy(belowProv[i], "Ontario");
+        }
+        else if(belowAvg[i] == avgQuebec){
+            strcpy(belowProv[i], "Quebec");
+        }
+        else if(belowAvg[i] == avgColumbia){
+            strcpy(belowProv[i], "British Columbia");
+        }
+        else if(belowAvg[i] == avgAlberta){
+            strcpy(belowProv[i], "Alberta");
+        }
+    }
+
+    for(int i=0; i<4; i++){
+        
+        if(aboveAvg[i] == avgOntario){
+            strcpy(aboveProv[i], "Ontario");
+        }
+        else if(aboveAvg[i] == avgQuebec){
+            strcpy(aboveProv[i], "Quebec");
+        }
+        else if(aboveAvg[i] == avgColumbia){
+            strcpy(aboveProv[i], "British Columbia");
+        }
+        else if(aboveAvg[i] == avgAlberta){
+            strcpy(aboveProv[i], "Alberta");
+        }
+    }
+
+
+    printf("\n");
+    printf("QUESTION 3\n");
+    printf("\n");
+
+    printf("The provinces that are above the national average are:\n");
+    for(int i=0; i<4; i++){
+        printf("%s\n",aboveProv[i]);
+    }
+    printf("\n");
+
+    printf("The provinces that are below the national average are:\n");
+    for(int i=0; i<4; i++){
+        printf("%s\n",belowProv[i]);
+    }
+
+    /*------------------------------------------------*/
+    /*      THE CODE TO SOLVE FOR QUESTION 4          */
+    /*------------------------------------------------*/
+
+
+    /*------------------------------------------------*/
+    /*   CODE TO PRINT THE DATA TO FILES FOR GRAPH    */
+    /*------------------------------------------------*/
+    FILE *newFILE;
+    newFILE = fopen("graphData.txt","w");
+
+    if (newFILE == NULL) {
+        printf("Error opening file\n");
+    return 1;
+    }
+
+    fprintf(newFILE,"%-15s %-15s %-15s %-15s %-18s %-15s\n", "Year (20XX)", "Canada", "Ontario", "Quebec", "British Columbia", "Alberta");
+    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2015, avgOntario2015, avgQuebec2015, avgColumbia2015, avgAlberta2015);
+    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2016, avgOntario2016, avgQuebec2016, avgColumbia2016, avgAlberta2016);
+    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2017, avgOntario2017, avgQuebec2017, avgColumbia2017, avgAlberta2017);
+    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2018, avgOntario2018, avgQuebec2018, avgColumbia2018, avgAlberta2018);
+    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2019, avgOntario2019, avgQuebec2019, avgColumbia2019, avgAlberta2019);
+    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2020, avgOntario2020, avgQuebec2020, avgColumbia2020, avgAlberta2020);
+    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2021, avgOntario2021, avgQuebec2021, avgColumbia2021, avgAlberta2021);
+    fprintf(newFILE,"\n");
+    fprintf(newFILE,"%-15s %-15s %-15s %-15s %-18s %-15s\n", "Age Group", "Canada", "Ontario", "Quebec", "British Columbia", "Alberta");
+    fprintf(newFILE,"%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "35-49", avgCanadaAgrGrp1, avgOntarioAgrGrp1, avgQuebecAgrGrp1, avgColumbiaAgrGrp1, avgAlbertaAgrGrp1);
+    fprintf(newFILE,"%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "50-64", avgCanadaAgrGrp2, avgOntarioAgrGrp2, avgQuebecAgrGrp2, avgColumbiaAgrGrp2, avgAlbertaAgrGrp2);
+    fprintf(newFILE,"%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "64+", avgCanadaAgrGrp3, avgOntarioAgrGrp3, avgQuebecAgrGrp3, avgColumbiaAgrGrp3, avgAlbertaAgrGrp3);
+
     return 0;
 }
 
@@ -225,13 +343,11 @@ double CalculateProvinceAvg(Data data[], char *filter) {
     for (int j = 0; j < 211; j++) {
         if (strcmp(data[j].geo, filter) == 0) {
             numVal += data[j].doubleVal;
-            printf("%lf\n", numVal);
             if(data[j].doubleVal != 0){
                 count++;
             }
         }
     }
-    printf("%d",count);
     double avg = numVal/count;
 
     return avg; 
@@ -253,7 +369,6 @@ double CalculateProvinceAndYearAvg(Data data[], char *filter, char *filter2) {
     double avg = numVal/count;
 
     return avg; 
-
 }
 
 double CalculateProvinceWithAgeAvg(Data data[], char *filter, char *filter2) {
@@ -271,5 +386,4 @@ double CalculateProvinceWithAgeAvg(Data data[], char *filter, char *filter2) {
     double avg = numVal/count;
 
     return avg; 
-
 }
