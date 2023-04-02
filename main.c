@@ -300,12 +300,12 @@ int main(void) {
 
     fprintf(newFILE,"%-15s %-15s %-15s %-15s %-18s %-15s\n", "Year (20XX)", "Canada", "Ontario", "Quebec", "British Columbia", "Alberta");
     fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2015, avgOntario2015, avgQuebec2015, avgColumbia2015, avgAlberta2015);
-    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2016, avgOntario2016, avgQuebec2016, avgColumbia2016, avgAlberta2016);
-    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2017, avgOntario2017, avgQuebec2017, avgColumbia2017, avgAlberta2017);
-    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2018, avgOntario2018, avgQuebec2018, avgColumbia2018, avgAlberta2018);
-    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2019, avgOntario2019, avgQuebec2019, avgColumbia2019, avgAlberta2019);
-    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2020, avgOntario2020, avgQuebec2020, avgColumbia2020, avgAlberta2020);
-    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2021, avgOntario2021, avgQuebec2021, avgColumbia2021, avgAlberta2021);
+    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2016, avgCanada2016, avgOntario2016, avgQuebec2016, avgColumbia2016, avgAlberta2016);
+    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2017, avgCanada2017, avgOntario2017, avgQuebec2017, avgColumbia2017, avgAlberta2017);
+    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2018, avgCanada2018, avgOntario2018, avgQuebec2018, avgColumbia2018, avgAlberta2018);
+    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2019, avgCanada2019, avgOntario2019, avgQuebec2019, avgColumbia2019, avgAlberta2019);
+    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2020, avgCanada2020, avgOntario2020, avgQuebec2020, avgColumbia2020, avgAlberta2020);
+    fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2021, avgCanada2021, avgOntario2021, avgQuebec2021, avgColumbia2021, avgAlberta2021);
     fprintf(newFILE,"\n");
 
     FILE *aFILE;
@@ -323,6 +323,10 @@ int main(void) {
 
     return 0;
 }
+
+/*------------------------------------------------*/
+/*      FUNCTIONS THAT HELPED SOLVED Q1 HERE      */
+/*------------------------------------------------*/
 
 double CalculateProvinceAvg(Data data[], char *filter) {
     double numVal = 0;
