@@ -312,7 +312,7 @@ char belowProv[][10]={"","","",""};
     /*   CODE TO PRINT THE DATA TO FILES FOR GRAPH    */
     /*------------------------------------------------*/
     FILE *newFILE;
-    newFILE = fopen("graphData.txt","w");
+    newFILE = fopen("yearGraphData.txt","w");
 
     if (newFILE == NULL) {
         printf("Error opening file\n");
@@ -328,10 +328,19 @@ char belowProv[][10]={"","","",""};
     fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2020, avgOntario2020, avgQuebec2020, avgColumbia2020, avgAlberta2020);
     fprintf(newFILE,"%-15d %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", 2015, avgCanada2021, avgOntario2021, avgQuebec2021, avgColumbia2021, avgAlberta2021);
     fprintf(newFILE,"\n");
-    fprintf(newFILE,"%-15s %-15s %-15s %-15s %-18s %-15s\n", "Age Group", "Canada", "Ontario", "Quebec", "British Columbia", "Alberta");
-    fprintf(newFILE,"%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "35-49", avgCanadaAgrGrp1, avgOntarioAgrGrp1, avgQuebecAgrGrp1, avgColumbiaAgrGrp1, avgAlbertaAgrGrp1);
-    fprintf(newFILE,"%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "50-64", avgCanadaAgrGrp2, avgOntarioAgrGrp2, avgQuebecAgrGrp2, avgColumbiaAgrGrp2, avgAlbertaAgrGrp2);
-    fprintf(newFILE,"%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "64+", avgCanadaAgrGrp3, avgOntarioAgrGrp3, avgQuebecAgrGrp3, avgColumbiaAgrGrp3, avgAlbertaAgrGrp3);
+
+    FILE *aFILE;
+    aFILE = fopen("ageGraphData.txt","w");
+
+    if (aFILE == NULL) {
+        printf("Error opening file\n");
+    return 1;
+    }
+
+    fprintf(aFILE,"%-15s %-15s %-15s %-15s %-18s %-15s\n", "Age Group", "Canada", "Ontario", "Quebec", "British Columbia", "Alberta");
+    fprintf(aFILE,"%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "35-49", avgCanadaAgrGrp1, avgOntarioAgrGrp1, avgQuebecAgrGrp1, avgColumbiaAgrGrp1, avgAlbertaAgrGrp1);
+    fprintf(aFILE,"%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "50-64", avgCanadaAgrGrp2, avgOntarioAgrGrp2, avgQuebecAgrGrp2, avgColumbiaAgrGrp2, avgAlbertaAgrGrp2);
+    fprintf(aFILE,"%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "64+", avgCanadaAgrGrp3, avgOntarioAgrGrp3, avgQuebecAgrGrp3, avgColumbiaAgrGrp3, avgAlbertaAgrGrp3);
 
     return 0;
 }
