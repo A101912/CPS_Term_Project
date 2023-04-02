@@ -174,12 +174,12 @@ int main(void) {
     printf("%-15s %-15s %-15s %-15s %-18s %-15s\n", "Year (20XX)", "Canada", "Ontario", "Quebec", "British Columbia", "Alberta");
     printf("%-15s %-15s %-15s %-15s %-18s %-15s\n", "---------------", "--------------", "--------------", "--------------", "------------------", "--------------");
     printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2015", avgCanada2015, avgOntario2015, avgQuebec2015, avgColumbia2015, avgAlberta2015);
-    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2015", avgCanada2016, avgOntario2016, avgQuebec2016, avgColumbia2016, avgAlberta2016);
-    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2015", avgCanada2017, avgOntario2017, avgQuebec2017, avgColumbia2017, avgAlberta2017);
-    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2015", avgCanada2018, avgOntario2018, avgQuebec2018, avgColumbia2018, avgAlberta2018);
-    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2015", avgCanada2019, avgOntario2019, avgQuebec2019, avgColumbia2019, avgAlberta2019);
-    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2015", avgCanada2020, avgOntario2020, avgQuebec2020, avgColumbia2020, avgAlberta2020);
-    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2015", avgCanada2021, avgOntario2021, avgQuebec2021, avgColumbia2021, avgAlberta2021);
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2016", avgCanada2016, avgOntario2016, avgQuebec2016, avgColumbia2016, avgAlberta2016);
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2017", avgCanada2017, avgOntario2017, avgQuebec2017, avgColumbia2017, avgAlberta2017);
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2018", avgCanada2018, avgOntario2018, avgQuebec2018, avgColumbia2018, avgAlberta2018);
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2019", avgCanada2019, avgOntario2019, avgQuebec2019, avgColumbia2019, avgAlberta2019);
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2020", avgCanada2020, avgOntario2020, avgQuebec2020, avgColumbia2020, avgAlberta2020);
+    printf("%-15s %-15.2f %-15.2f %-15.2f %-18.2f %-15.2f\n", "2021", avgCanada2021, avgOntario2021, avgQuebec2021, avgColumbia2021, avgAlberta2021);
 
     /*------------------------------------------------*/
     /*      THE CODE TO SOLVE FOR QUESTION 1d)        */
@@ -235,7 +235,7 @@ int main(void) {
     printf("-----------------------------------------------\n");
     printf("QUESTION 2\n");
     printf("\n");
-    
+
     printf("The province with the highest average is:");
     for(int i=0; i<4; i++){
         if(ProvinceAvg[i] == highest) {
@@ -293,7 +293,14 @@ int main(void) {
     /*------------------------------------------------*/
     /*      THE CODE TO SOLVE FOR QUESTION 4          */
     /*------------------------------------------------*/
-
+    char yearName[][20] = {"2015", "2016", "2017" , "2018", "2019", "2020", "2021"};
+    double province2015[] = {};
+    double province2016[] = {};
+    double province2017[] = {};
+    double province2018[] = {};
+    double province2019[] = {};
+    double province2020[] = {};
+    double province2021[] = {};
 
     /*------------------------------------------------*/
     /*   CODE TO PRINT THE DATA TO FILES FOR GRAPH    */
