@@ -1,0 +1,20 @@
+#We need a title for the graph
+set title 'Average percentage of diabetic individuals in Canada per age group'
+#Labels for the x and y axis
+set ylabel "Average Percentager of Diabetes (%)" 
+set xlabel "Age groups" 
+set grid
+#We want to change the colour of each line 
+set style line 1 lc rgb "green"
+set style line 2 lc rgb "red"
+set style line 3 lc rgb "blue"
+#The thickness of each graph and if it is filled or not
+set boxwidth 0.75
+set style fill solid
+set yrange [0:20]
+set ytics 1
+unset key
+#ytic here means that the columns in this graph have been used as a key
+plot 'bar.data.txt' every ::0::2 using 2:xtic(1) with boxes ls 1, \
+     'bar.data.txt' every ::0::1 using 2:xtic(1) with boxes ls 2, \
+     'bar.data.txt' every ::0::0 using 2:xtic(1) with boxes ls 3
